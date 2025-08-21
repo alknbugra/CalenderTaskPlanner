@@ -32,7 +32,7 @@
 ### Bu projeyi bilgisayarınıza klonlama
 ```bash
 # (repo adresinizi değiştirin)
-git clone https://github.com/<kullanici-adi>/<repo-adi>.git
+git clone https://github.com/alknbugra/CalenderTaskPlanner.git
 cd <repo-adi>
 # Visual Studio ile .sln dosyasını açın ve F5 ile çalıştırın
 ```
@@ -40,10 +40,16 @@ cd <repo-adi>
 ### Arayüz Görünümü
 Aşağıdaki görselleri `docs/` klasörüne ekleyin; README otomatik gösterir.
 
-![Ana Sayfa](docs/ui-index.png)
+#UI-Calender 
 ![Takvim](docs/ui-calendar.png)
-![TaskResize](docs/ui-calendar-task-resize.png)
-![TaskDelete](docs/ui-calendar-task-delete.png)
+#UI-Drag&Drop
+![Ana Sayfa](docs/ui-drag-drop.png)
+#UI-Delete
+![Ana Sayfa](docs/ui-calendar-task-delete.png)
+#UI-Resize
+![Ana Sayfa](docs/ui-calendar-task-resize.png)
+#UI-Index 
+![Takvim](docs/ui-index.png)
 
 ### Notlar
 - `.gitignore` takip dışı: `bin/`, `obj/`, `*.user`, publish profilleri vb.
