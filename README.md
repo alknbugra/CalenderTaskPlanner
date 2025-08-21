@@ -1,3 +1,12 @@
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen.svg)
+![Platform](https://img.shields.io/badge/Platform-.NET-blueviolet.svg)
+![Last Commit](https://img.shields.io/github/last-commit/alknbugra/CognexBarcodeReader?color=orange)
+![Repo Size](https://img.shields.io/github/repo-size/alknbugra/CognexBarcodeReader)
+![Downloads](https://img.shields.io/github/downloads/alknbugra/CognexBarcodeReader/total)
+![Issues](https://img.shields.io/github/issues/alknbugra/CognexBarcodeReader)
+![Release](https://img.shields.io/github/v/release/alknbugra/CognexBarcodeReader)
+
 ## WorkPlanCalender (ASP.NET MVC 5)
 
 Kurumsal verilerden arındırılmış demo sürüm. `DemoMode` açıkken uygulama veritabanına bağlanmadan örnek kullanıcı ve görevlerle çalışır.
@@ -6,7 +15,6 @@ Kurumsal verilerden arındırılmış demo sürüm. `DemoMode` açıkken uygulam
 - FullCalendar ile görev planlama (sürükle-bırak, resize)
 - `DemoMode` ile mock kullanıcı ve görev verileri
 - Yapılandırılabilir bilet bağlantısı (`TicketBaseUrl`)
-- (Opsiyonel) GitHub Actions CI: Her push’ta otomatik derleme
 
 ### Hızlı Başlangıç
 1) Visual Studio ile `CalenderDemo2.sln` dosyasını açın.
@@ -23,22 +31,19 @@ Kurumsal verilerden arındırılmış demo sürüm. `DemoMode` açıkken uygulam
 - `DemoMode=true`: Kullanıcılar ve görevler bellek içinde üretilir; DB yok.
 - `DemoMode=false`: Entity Framework ile gerçek DB’ye bağlanır (kendi bağlantılarınızı tanımlayın).
 
-### CI (Continuous Integration) nedir?
-- Repoya her push/pull request’te sunucuda otomatik derleme çalıştırır.
-- Kırık build’leri erken yakalarsınız.
-- Örnek workflow dosyası: `.github/workflows/ci.yml` (Windows runner’da NuGet restore + MSBuild ile derleme).
-
-### GitHub’a Yükleme (kısaca)
+### Bu projeyi bilgisayarınıza klonlama
 ```bash
-# proje kökünde
-git init
-git branch -M main
-git add .
-git commit -m "Initial import (sanitized + DemoMode)"
-# kendi repo URL’nizi kullanın
-git remote add origin https://github.com/<kullanici-adi>/<repo-adi>.git
-git push -u origin main
+# (repo adresinizi değiştirin)
+git clone https://github.com/<kullanici-adi>/<repo-adi>.git
+cd <repo-adi>
+# Visual Studio ile .sln dosyasını açın ve F5 ile çalıştırın
 ```
+
+### Arayüz Görünümü
+Aşağıdaki görselleri `docs/` klasörüne ekleyin; README otomatik gösterir.
+
+![Ana Sayfa](docs/ui-index.png)
+![Takvim](docs/ui-calendar.png)
 
 ### Notlar
 - `.gitignore` takip dışı: `bin/`, `obj/`, `*.user`, publish profilleri vb.
