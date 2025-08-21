@@ -1,0 +1,13 @@
+﻿
+@model List<System.Web.UI.WebControls.ListItem>
+
+<label class="mb-1" style="font-size:medium"><b><u>Filtre</u></b></label>
+<select onchange="GetPlanFilter()" id="IDstatus" data-size="4" data-live-search="true" class="form-control form-control-sm selectpicker" name="IDstatus" required>
+    <option value="0" selected> Tümü </option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Value"> @item.Text </option>
+    }
+</select>
+
+

@@ -1,0 +1,525 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+
+    #DevRecordsList {
+        border: solid 0px #dcdcdc;
+        height: 593px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .external-event {
+        border-radius: 7px;
+        cursor: pointer;
+        padding-left: 13px;
+        height: 44px;
+        margin-bottom: 2px;
+        color: black;
+        background-color: #e3e3e3;
+        margin-bottom: 7px;
+        font-size: 14px;
+        border: solid 1px black;
+    }
+</style>
+
+
+<div class="row pt-5 gx-5" style="border: solid 0px red; ">
+
+    <div class="col-md-4" style="border: solid 0px #dcdcdc;">
+
+        <div class="row mb-3">
+
+            <div class="col-md-6">
+                <label class="mb-1" style="font-size:medium"><b><u>Kullanıcılar</u></b></label>
+                @{
+                    if (@ViewBag.SystemDevelopersList == null)
+                    {
+                        <label class="mb-1" style="font-size:medium; color:red;"><b><u>Kullanıcı listesi çekilemedi.</u></b></label>
+                    }
+                    else
+                    {
+                        <select onchange="GetDeveloperPlan()" id="IDkullanici" data-size="4" data-live-search="true" class="form-control form-control-sm selectpicker" name="IDkullanici" required>
+                            <option value="" disabled selected>Kullanıcı seçiniz..</option>
+                            @foreach (var item in @ViewBag.SystemDevelopersList)
+                            {
+                                <option value="@item.Id">@item.Name @item.Surname</option>
+                            }
+                        </select>
+                    }
+                }
+            </div>
+
+            <div class="col-md-6">
+                <div id="divFilter">
+                </div>
+            </div>
+        </div>
+
+        <label class="mb-1 row" style="font-size: medium">
+            <u class="fw-bold col-6">Atanmamış QBT Kayıtları</u>
+            <small class="col-6" id="IdKayitSayisi" style="color: #ff0000; text-align: right; font-style: italic; "></small>
+        </label>
+
+        <!-- Loading Spinner Left -->
+        <div id="loadingSpinnerLeft" style="display:none; text-align:center; padding:20px;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Yükleniyor...</span>
+            </div>
+            <div>Lütfen bekleyiniz...</div>
+        </div>
+
+        <div id="DevRecordsList" class="col-12" style="height:640px;">
+            <small><i>Henüz kullanıcı seçilmedi.</i></small>
+        </div>
+
+    </div>
+    <div class="col-md-8" style="border:solid 0px blue;">
+
+        <!-- Loading Spinner Right -->
+        <div id="loadingSpinnerRight" style="display:none; text-align:center; padding:20px;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Yükleniyor...</span>
+            </div>
+            <div>Lütfen bekleyiniz...</div>
+        </div>
+
+        <div id="eventTooltip"
+             style="position: absolute; display: none; background: #333; color: #fff; padding: 8px; border-radius: 6px; font-size: 12px; z-index: 999999;">
+        </div>
+
+        <div id="calendar"></div>
+
+        <!-- Sayfanda bir context menu için basit div -->
+        <div id="contextMenu" style="display: none; position: absolute; background: #fff; border: 1px solid #ccc; z-index: 9999999;">
+            <ul style="list-style:none; margin:0; padding:5px;">
+                <li id="deleteEvent" style="padding:5px; cursor:pointer;">Etkinliği Sil</li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- body sonunda -->
+<script src="~/Content/lib/fullcalendar/index.global.min.js"></script>
+
+<script>
+
+    var calendar;
+    let selectedEvent = null;
+
+    // loading function
+    document.addEventListener('DOMContentLoaded', function () {
+
+        $('#loadingSpinnerRight').show();
+        var calendarEl = document.getElementById('calendar');
+
+        calendar = new FullCalendar.Calendar(calendarEl, {
+
+            initialView: 'dayGridMonth', // Başlangıç görünümü
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,listWeek' // Sadece bu iki buton görünecek
+            },
+            views: {
+                listWeek: {
+                    buttonText: 'Haftalık Liste' // Türkçeleştirme (isteğe bağlı)
+                },
+                dayGridMonth: {
+                    buttonText: 'Aylık Takvim' // Türkçeleştirme (isteğe bağlı)
+                }
+            },
+            hiddenDays: [0, 6], // 0 = Pazar, 6 = Cumartesi
+            selectable: true,
+            editable: true,
+            droppable: true,
+            locale: 'tr',
+            firstDay: 1,
+            events: [], // Başta boş bırakıyoruz
+            eventSources: [
+                {
+                    events: function (fetchInfo, successCallback, failureCallback) {
+                        const range = getCurrentWeekdaysRange();
+                        successCallback([
+                            {
+                                start: range.start,
+                                end: range.end,
+                                display: 'background',
+                                backgroundColor: 'lightgreen'
+                            }
+                        ]);
+                    }
+                }
+            ],
+            dayMaxEventRows: 5, // v5+
+            height: 'auto',
+
+
+            // Takvimde zaten var olan bir etkinlik, başka bir tarihe veya saate sürüklendiğinde.
+            //i.ylcn
+            eventDrop: function (info) {
+
+                var id = info.event.id;
+                var start = info.event.start.toISOString();
+
+                // Bitiş tarihini 1 gün geri al (eğer varsa)
+                var end = info.event.end ? new Date(info.event.end) : info.event.start;
+                if (info.event.end) {
+                    end.setDate(end.getDate() - 1);
+                }
+                end = end.toISOString();
+
+                $.ajax({
+                    url: "@Url.Action("UpdateEventDateRange", "Home")",
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        start: start,
+                        end: end,
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            GetDeveloperPlan();
+                        } else {
+                            alert('Güncelleme başarısız: ' + response.message);
+                            info.revert();
+                        }
+                    },
+                    error: function () {
+                        alert('Hata : /Home/UpdateEventDateRange');
+                        info.revert();
+                    }
+                });
+            },
+
+            // Bir kullanıcı takvimdeki bir etkinliğe tıkladığında.
+            eventClick: function (info) {
+                // Gidilecek URL
+                const url = '@System.Configuration.ConfigurationManager.AppSettings["TicketBaseUrl"]' + info.event.extendedProps.taskid;
+
+                // Yeni sekmede aç
+                window.open(url, '_blank');
+
+                // Varsayılan davranışı engelle
+                info.jsEvent.preventDefault();
+            },
+
+            // Zaman aralıklı bir etkinliğin süre uzunluğu (end tarihi) uzatıldığında veya kısaltıldığında.
+            //i.ylcn
+            eventResize: function (info) {
+            var id = info.event.id;
+            var start = info.event.start.toISOString();
+
+            var end = info.event.end ? new Date(info.event.end) : info.event.start;
+            if (info.event.end) {
+                end.setDate(end.getDate() - 1);
+            }
+            end = end.toISOString();
+
+            $.ajax({
+                url: "@Url.Action("UpdateEventDateRange", "Home")",
+                type: 'POST',
+                data: {
+                    id: id,
+                    start: start,
+                    end: end,
+                },
+                success: function (response) {
+                    if (response.success) {
+                        GetDeveloperPlan();
+                    } else {
+                        alert('Güncelleme başarısız: ' + response.message);
+                        info.revert();
+                    }
+                },
+                error: function () {
+                    alert('Hata : /Home/UpdateEventDateRange');
+                    info.revert();
+                }
+            });
+            },
+
+            // Etkinlik DOM'a render edildikten sonra.
+            eventDidMount: function (info) {
+
+                // Sağ tıklama event listener'ını buraya ekle
+                info.el.addEventListener('contextmenu', function (e) {
+                    e.preventDefault();
+
+                    selectedEvent = info.event;
+
+                    const menu = document.getElementById('contextMenu');
+                    menu.style.display = 'block';
+                    menu.style.left = e.pageX + 'px';
+                    menu.style.top = e.pageY + 'px';
+                });
+            },
+
+            // Fare, bir etkinliğin üzerine geldiğinde.
+            eventMouseEnter: function (info) {
+
+                const tooltip = document.getElementById('eventTooltip');
+                const start = info.event.start ? info.event.start.toLocaleDateString('tr-TR') : '';
+
+                let end = '';
+                if (info.event.end) {
+                    const adjustedEnd = new Date(info.event.end);
+                    adjustedEnd.setDate(adjustedEnd.getDate() - 1);  // 🔧 1 gün geri al
+                    end = adjustedEnd.toLocaleDateString('tr-TR');
+                }
+
+                let content = `
+                    <strong>${info.event.title}</strong><br>
+                    Başlangıç: ${start}<br>
+                `;
+
+                if (end && end !== start) {
+                    content += `Bitiş: ${end}<br>`;
+                }
+
+                tooltip.innerHTML = content;
+                tooltip.style.display = 'block';
+
+                // Fare hareketiyle tooltip konumunu güncelle
+                info.el.addEventListener('mousemove', function (e) {
+                    tooltip.style.left = (e.pageX + 10) + 'px';
+                    tooltip.style.top = (e.pageY + 10) + 'px';
+                });
+            },
+
+            // Fare, bir etkinliğin üzerinden gittiğinde.
+            eventMouseLeave: function () {
+                const tooltip = document.getElementById('eventTooltip');
+                tooltip.style.display = 'none';
+            },
+
+            // Dışarıdan sürüklenen etkinlik takvime başarıyla eklendiğinde.
+            eventReceive: function (info) {
+
+                var id = info.draggedEl.getAttribute('data-id');
+
+                var start = info.event.start.toISOString(); // Doğru tarih buradan alınır
+
+                var duration = info.draggedEl.getAttribute('data-duration'); // opsiyonel
+                var end = null;
+                if (duration) {
+                    var d = moment.duration(duration); // örn: "01:00"
+                    end = moment(start).add(d).toISOString();
+                } else {
+                    end = start;
+                }
+
+                $.ajax({
+                    url: "@Url.Action("CreateEvent", "Home")",
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        start: start,
+                        end: end,
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            GetDeveloperPlan();
+                        } else {
+                            alert('Kayıt başarısız: ' + response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Hata : /Home/CreateEvent');
+                        calendar.refetchEvents();
+                    }
+                });
+
+            },
+
+        });
+
+        // Menü dışına tıklanınca gizle
+        document.addEventListener('click', function (e) {
+            const menu = document.getElementById('contextMenu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            }
+        });
+
+        // Menüde silme işlemi
+        document.getElementById('deleteEvent').addEventListener('click', function () {
+            if (selectedEvent) {
+
+                const confirmed = confirm(`"${selectedEvent.title}" adlı görevi silmek istiyor musunuz?`);
+                if (confirmed) {
+                    $.ajax({
+                        url: "@Url.Action("DeleteEvent", "Home")",
+                        type: 'POST',
+                        data: { id: selectedEvent.id },
+                        success: function (response) {
+                            if (response.success) {
+                                GetDeveloperPlan();
+                            } else {
+                                alert("Silme başarısız: " + response.message);
+                            }
+                        },
+                        error: function () {
+                            alert("Hata oluştu: /Home/DeleteEvent");
+                        }
+                    });
+                }
+                // İstersen backend API çağrısı ile veritabanından da silebilirsin
+
+                selectedEvent = null;
+                document.getElementById('contextMenu').style.display = 'none';
+            }
+        });
+
+        calendar.render();
+        $('#loadingSpinnerRight').hide();
+
+    });
+
+    function getCurrentWeekdaysRange() {
+        const today = new Date();
+
+        // Haftanın Pazartesi'sini bul
+        const monday = new Date(today);
+        monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+
+        // Haftanın Cuma'sını bul
+        const friday = new Date(monday);
+        friday.setDate(monday.getDate() + 4);
+
+        return {
+            start: monday.toISOString().split('T')[0],
+            end: (new Date(friday.getTime() + 24 * 60 * 60 * 1000)).toISOString().split('T')[0] // Cuma dahil olmalı
+        };
+    }
+
+
+</script>
+
+<script>
+
+
+    // Kullanıcı seçildiğinde çağrılır
+    function GetDeveloperPlan() {
+
+        $("#DevRecordsList").empty();
+        $('#loadingSpinnerLeft').show();
+
+        var IDkullanici = document.getElementById("IDkullanici").value;
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("P_GetDeveloperPlan", "Home")",
+            data: {
+                DeveloperId: IDkullanici
+            },
+            success: function (dataRecords) {
+
+                // Sol panel güncelle
+                $('#loadingSpinnerLeft').hide();
+                $("#DevRecordsList").empty().append(dataRecords);
+
+                const count = document.querySelectorAll('#DevRecordsList .external-event').length;
+                $('#IdKayitSayisi').empty().append(""+ count + " kayıt listelendi.");
+
+                // Sol panel drag&drop
+                new FullCalendar.Draggable(document.getElementById('DevRecordsList'), {
+                    itemSelector: '.external-event',
+                    eventData: function (eventEl) {
+                        return {
+                            title: eventEl.innerText.trim()
+                        };
+                    }
+                });
+
+                // Filtre güncelle
+                filtreGuncelle();
+
+                // Takvimi güncelle
+                takvimYukle();
+            },
+            error: function () {
+                alert("Kayıtlar yüklenemedi.");
+            }
+        });
+    }
+
+    // Status filtresi güncelle
+    function filtreGuncelle() {
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("P_GetRecordsFilterList", "Home")",
+            data: {},
+            success: function (dataFilter) {
+
+                $("#divFilter").empty().append(dataFilter);
+            },
+            error: function () {
+                alert("Takvim verileri alınamadı.");
+            }
+        });
+    }
+
+    // Takvim yükle
+    function takvimYukle() {
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("P_GetDeveloperEvents", "Home")",
+            data: {},
+            success: function (eventList) {
+
+                calendar.removeAllEvents(); // önceki eventleri sil
+                calendar.addEventSource(eventList); // yeni eventleri ekle
+
+                // Haftalık arka plan vurgusunu tekrar ekle
+                const range = getCurrentWeekdaysRange();
+                calendar.addEvent({
+                    start: range.start,
+                    end: range.end,
+                    display: 'background',
+                    backgroundColor: 'lightgreen'
+                });
+            },
+            error: function () {
+                alert("Takvim verileri alınamadı.");
+            }
+        });
+    }
+
+    // Status filtresi değiştiğinde çağrılır
+    function GetPlanFilter() {
+
+        $("#DevRecordsList").empty();
+        $('#loadingSpinnerLeft').show();
+
+        var IDstatus = document.getElementById("IDstatus").value;
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("P_SetFilterStatus", "Home")",
+            data: {
+                IdStatus: IDstatus
+            },
+            success: function (dataRecords) {
+
+                // Sol panel güncelle
+                $('#loadingSpinnerLeft').hide();
+                $("#DevRecordsList").empty().append(dataRecords);
+
+                const count = document.querySelectorAll('#DevRecordsList .external-event').length;
+                $('#IdKayitSayisi').empty().append("" + count + " kayıt listelendi.");
+            },
+            error: function () {
+                alert("Kayıtlar yüklenemedi.");
+            }
+        });
+    }
+
+
+</script>

@@ -1,0 +1,45 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+**/[Bb]in/**
+**/[Oo]bj/**
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+artifacts/
+
+# Web
+node_modules/
+
+# Publish profiles (user-specific)
+*.pubxml.user
+
+# Resharper/Cache
+_ReSharper*/
+*.ReSharper
+*.DotSettings.user
+
+# Logs
+*.log
+
+# Others
+*.pdb
+*.dbmdl
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.htm
+UpgradeLog*.XML
+TestResult*/
+*.cache
+
+

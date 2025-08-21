@@ -1,0 +1,30 @@
+﻿
+@model List<CalenderDemo2.Models.CalendarEvent>
+
+@foreach (var item in Model)
+{
+    string title = $"QBT-{item.taskid} / {item.title}";
+    string taskId = $"QBT-{item.taskid}";
+    string summary = item.title;
+    if (summary.Length > 50) { summary = summary.Substring(0, 50) + "..."; }
+    string linkColor = "";
+    if (item.backgroundColor == "#437CC8" || item.backgroundColor == "#6F61C4" || item.backgroundColor == "#FF5500") { linkColor = "text-white"; } else { linkColor = "text-primary"; }
+
+
+    <div class="external-event" title="@title" style="background-color:@item.backgroundColor; color:@item.textColor"
+         data-id="@item.id"
+         data-taskid="@item.taskid"
+         data-statusId="@item.statusId"
+         data-status="@item.status"
+         data-title="@title"
+         data-sorttitle="@summary"
+         data-start="@item.start"
+         data-end="@item.end"
+         data-allDay="@item.allDay"
+         data-backgroundColor="@item.backgroundColor"
+         data-fontColor="@item.textColor"
+         data-borderColor="@item.borderColor"
+         data-url="@item.url">
+        <b class="@linkColor">@taskId</b> <br /> @summary
+    </div>
+}

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="823874570de3428390c3fbed72ba1b9d" Name="Diagram1">
+        <EntityTypeShape EntityType="QBTModel.ActivityReactionsTbl" Width="1.5" PointX="3" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.BTCostTbl" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.ColumnVisibilityByUserTbl" Width="1.5" PointX="6" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.ColumnVisibilityMainTbl" Width="1.5" PointX="3.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.CommentReactionsTbl" Width="1.5" PointX="3" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.CommentsTbl" Width="1.5" PointX="3" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.DefaultFilterTbl" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.DeveloperUnitTbl" Width="1.5" PointX="6.75" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.EmojiGroupTbl" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.EmojiTbl" Width="1.5" PointX="3.75" PointY="60" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.ExcelExportParametersList" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.FilesTbl" Width="1.5" PointX="6" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.FilterCreateTBL" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.GroupTbl" Width="1.5" PointX="3.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.HtmlEmojiTbl" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.JiraComponentTbl" Width="1.5" PointX="6.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.JiraKeyTbl" Width="1.5" PointX="9" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.JiraUsersTbl" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.LogTbl" Width="1.5" PointX="3" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.MailTypeTbl" Width="1.5" PointX="3.75" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.MainTicketTbl" Width="1.5" PointX="9" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.NotificationTbl" Width="1.5" PointX="16.5" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.OperationRelTbl" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.OperationTbl" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.OutSourceUserInfoTbl" Width="1.5" PointX="6.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.ParameterTbl" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.ProjectTbl" Width="1.5" PointX="6.75" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.RoleTbl" Width="1.5" PointX="0.75" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.StatusFlowTbl" Width="1.5" PointX="9" PointY="62.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.StatusLogTbl" Width="1.5" PointX="11.25" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.SuboperationTbl" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.SystemProcessRoleTbl" Width="1.5" PointX="9" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.SystemProcessTbl" Width="1.5" PointX="6.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketComponentTbl" Width="1.5" PointX="14.25" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketDeveloperTbl" Width="1.5" PointX="14.25" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketHistoryTbl" Width="1.5" PointX="14.25" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketInvoiceTbl" Width="1.5" PointX="11.25" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketJiraTbl" Width="1.5" PointX="11.25" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketParameterListTbl" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketParametertbl" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketPriorityTbl" Width="1.5" PointX="6.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketResolutionTbl" Width="1.5" PointX="6.75" PointY="53" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketStatusTbl" Width="1.5" PointX="6.75" PointY="60.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.TicketTypeTbl" Width="1.5" PointX="6.75" PointY="68.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UnitTbl" Width="1.5" PointX="1.5" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserEmojiUsageTbl" Width="1.5" PointX="6" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserFilterTbl" Width="1.5" PointX="3" PointY="74.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserFollowerGroupListTbl" Width="1.5" PointX="5.25" PointY="57.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserFollowerGroupTbl" Width="1.5" PointX="3" PointY="80.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserMailOptionTbl" Width="1.5" PointX="6" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserRoleTbl" Width="1.5" PointX="3" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserTbl" Width="1.5" PointX="0.75" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.UserUnitTbl" Width="1.5" PointX="3" PointY="45.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.WatcherGroupTbl" Width="1.5" PointX="6" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.WatchersTbl" Width="1.5" PointX="11.25" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QBTModel.WebServiceLogTbl" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="QBTModel.FK_ActivityReactionsTbl_HtmlEmojiTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_ActivityReactionsTbl_TicketHistoryTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_ActivityReactionsTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_ColumnVisibilityByUserTbl_ColumnVisibilityMainTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_ColumnVisibilityByUserTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_CommentReactionsTbl_CommentsTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_CommentReactionsTbl_HtmlEmojiTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_CommentReactionsTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_CommentsTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_CommentsTbl_UnitTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_CommentsTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_DeveloperUnitTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_OutSourceUserInfoTbl_DeveloperUnitTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_EmojiTbl_EmojiGroupTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_HtmlEmojiTbl_EmojiGroupTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserEmojiUsageTbl_EmojiTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_FilesTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_FilesTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_GroupTbl_UnitTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_WatcherGroupTbl_GroupTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_JiraComponentTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketComponentTbl_JiraComponentTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketJiraTbl_JiraKeyTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_LogTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserMailOptionTbl_MailTypeTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_OutSourceUserInfoTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_ProjectTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_TicketPriorityTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_TicketResolutionTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_TicketStatusTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_TicketStatusTbl1" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_TicketTypeTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_UnitTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_UserTbl1" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_UserTbl2" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_MainTicketTbl_UserTbl3" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_StatusLogTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketComponentTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketDeveloperTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketHistoryTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketInvoiceTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketJiraTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_WatchersTbl_MainTicketTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_NotificationTbl_TicketHistoryTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_NotificationTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_OperationRelTbl_OperationTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_OperationRelTbl_SuboperationTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketDeveloperTbl_OutSourceUserInfoTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_SystemProcessRoleTbl_RoleTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserRoleTbl_RoleTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_StatusFlowTbl_TicketStatusTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_StatusFlowTbl_TicketStatusTbl1" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_StatusLogTbl_TicketStatusTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_StatusLogTbl_TicketStatusTbl1" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_StatusLogTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_SystemProcessRoleTbl_SystemProcessTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketHistoryTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketJiraTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_TicketStatusTbl_TicketStatusTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserUnitTbl_UnitTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserEmojiUsageTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserFilterTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserFollowerGroupListTbl_UserFollowerGroupTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserFollowerGroupListTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserFollowerGroupTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserMailOptionTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserRoleTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_UserUnitTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_WatcherGroupTbl_UserTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="QBTModel.FK_WatchersTbl_UserTbl" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
