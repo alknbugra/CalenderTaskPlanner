@@ -9,8 +9,6 @@
 
 ## WorkPlanCalender (ASP.NET MVC 5)
 
-Kurumsal verilerden arındırılmış demo sürüm. `DemoMode` açıkken uygulama veritabanına bağlanmadan örnek kullanıcı ve görevlerle çalışır.
-
 ### Özellikler
 - FullCalendar ile görev planlama (sürükle-bırak, resize)
 - `DemoMode` ile mock kullanıcı ve görev verileri
@@ -44,6 +42,8 @@ Aşağıdaki görselleri `docs/` klasörüne ekleyin; README otomatik gösterir.
 
 ![Ana Sayfa](docs/ui-index.png)
 ![Takvim](docs/ui-calendar.png)
+![TaskResize](docs/ui-calendar-task-resize.png)
+![TaskDelete](docs/ui-calendar-task-delete.png)
 
 ### Notlar
 - `.gitignore` takip dışı: `bin/`, `obj/`, `*.user`, publish profilleri vb.
